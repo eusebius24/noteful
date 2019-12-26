@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.maincontent {
+    display: flex;
+   
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainheader {
+    width: 100%;
+    text-align: center;
+}
+.sidebar{
+    
+    flex-direction: column;
+    flex-grow: 1;
+    border: 1px solid grey;
+    padding: 10px;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.notepane {
+    flex-grow: 2;
+    border: 1px solid grey;
+    padding: 10px;
+    max-width: 66%;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.note {
+    border: 1px solid grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notefooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.folder {
+    border: 1px solid grey;
+    padding: 10px;
+    padding-bottom: 60px;
+    height: 20vh;
+}
+
+.folder:hover {
+    background-color: darkgrey;
+    cursor: pointer;
+}
+
+button {
+    background-color: #fff;
+    border: 1px solid grey;
+    font-size: 16px;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: darkgrey;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar.active, .selected {
+    background-color: #95e4f4;
+}
+
+.content {
+    width: 50%;
 }

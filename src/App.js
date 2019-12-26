@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
+import Main from './Main';
+import STORE from './dummy-store';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      folders: STORE.folders,
+      notes: STORE.notes,
+      selectedFolder: '',
+      selectedNote: ''
+    }
+    this.selectFolder = this.selectFolder.bind(this);
+    this.selectNote = this.selectNote.bind(this);
+  }
+  
+  selectFolder(e) {
+    this.setState({
+      selectedFolder: this.folders.name
+    })
+    console.log(this.state.selectedFolder);
+    }
+  
+  selectNote(e) {
+    console.log(e.target);
+  }
+
+
+  render() {
+    console.log(this.state);
+    return (
+      <div>
+        <Header />
+        <Main folders={this.state.folders} notes={this.state.notes} selectedFolder={this.state.selectedFolder} selectedNote={this.state.selectedNote} selectFolder={this.selectFolder} selectNote={this.selectNote} />
+      </div>
+    );
+  }
+ 
+     
+     
+     
+     
+        
+       
+
+     
+      
+   
+  
 }
 
 export default App;
