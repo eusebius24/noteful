@@ -12,19 +12,17 @@ import SingleNote from './SingleNote';
 function Main(props) {
     return (
         <Switch>
-<Route exact path = '/'
-  render={() => <Notepane folders={props.folders} notes={props.notes} selectedFolder={props.selectedFolder} selectedNote={props.selectedNote} 
-  selectFolder={props.selectFolder} selectNote={props.selectNote}
-  />}
-  />
-<Route path = '/FolderViews/FolderViewImportant'
-  render={() => <FolderViewImportant folders={props.folders} notes={props.notes} selectedFolder={props.selectedFolder} selectedNote={props.selectedNote}  selectFolder={props.selectFolder} selectNote={props.selectNote} />}/>
+          <Route exact path = '/'
+            component={Notepane}
+            />
+<Route path = "/FolderViews/FolderViewImportant"
+  component={FolderViewImportant} />
 <Route path = '/FolderViews/FolderViewSuper'
-  render={() => <FolderViewSuper folders={props.folders} notes={props.notes} selectedFolder={props.selectedFolder} selectedNote={props.selectedNote}  selectFolder={props.selectFolder} selectNote={props.selectNote} />}/>
+  component={FolderViewSuper} />
 <Route path = '/FolderViews/FolderViewSpangley'
-  render={() => <FolderViewSpangley folders={props.folders} notes={props.notes} selectedFolder={props.selectedFolder} selectedNote={props.selectedNote}  selectFolder={props.selectFolder} selectNote={props.selectNote} />}/>
+  component={FolderViewSpangley} />
 <Route path="/notes/:noteid" component={SingleNote}/>} />
- 
+
 
 </Switch>
 

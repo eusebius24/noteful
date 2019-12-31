@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import Folder from './Folder';
 import Note from './Note';
 function FolderView(props) {

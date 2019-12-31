@@ -2,17 +2,20 @@ import React from 'react';
 import './App.css';
 import Header from './Header';
 import Main from './Main';
-import STORE from './dummy-store';
+import NotefulContext from './NotefulContext';
+import {createBrowserHistory} from 'history';
+
 
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      folders: STORE.folders,
-      notes: STORE.notes,
+      folders: [],
+      notes: [],
       selectedFolder: '',
-      selectedNote: ''
+      selectedNote: '',
+      error: null,
     }
     this.selectFolder = this.selectFolder.bind(this);
     this.selectNote = this.selectNote.bind(this);
@@ -29,14 +32,82 @@ class App extends React.Component {
     console.log(e.target);
   }
 
+  deleteNote = noteID => {
+    const history = createBrowserHistory();
+    const newNotes = this.state.notes.filter(note => 
+        note.id !== noteID
+    )
+    this.setState({
+      notes: newNotes
+    });
+    history.push('/');
+  }
+
+  componentDidMount() {
+    const folderURL = 'http://localhost:9090/folders';
+    const notesURL = 'http://localhost:9090/notes';
+    fetch(folderURL, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json();
+        
+      })
+      .then(data => {
+        console.log('folder data:', data);
+        this.setState({
+          folders: data
+        })
+        console.log('folders:', this.state.folders);
+      })
+      .catch(error => this.setState({ error }))
+    
+      fetch(notesURL, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        }
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(res.status)
+          }
+          return res.json();
+          
+        })
+        .then(data => {
+          console.log('note data:', data);
+          this.setState({
+            notes: data
+          })
+        })
+        .catch(error => this.setState({ error }))
+  }
+
 
   render() {
-    console.log(this.state);
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+      selectFolder: this.selectFolder,
+      selectNote: this.selectNote,
+      deleteNote: this.deleteNote,
+    }
+   console.log('state:', this.state);
     return (
       <div>
-        <Header />
-        <Main folders={this.state.folders} notes={this.state.notes} selectedFolder={this.state.selectedFolder} selectedNote={this.state.selectedNote} selectFolder={this.selectFolder} selectNote={this.selectNote} />
+        <NotefulContext.Provider value={contextValue}>
+          <Header />
+          <Main  />
+        </NotefulContext.Provider>
       </div>
+      
     );
   }
  
