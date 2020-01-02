@@ -1,6 +1,6 @@
 import React from 'react';
 import NotefulContext from './NotefulContext';
-import Header from './Header';
+
 
 const Required = () => (
     <span className='AddBookmark__required'>*</span>
