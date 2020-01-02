@@ -3,6 +3,7 @@ import {NavLink, Link} from 'react-router-dom';
 import Folder from './Folder';
 import Note from './Note';
 import NotefulContext from './NotefulContext';
+import './App.css';
 
 class Notepane extends React.Component {
   
@@ -13,17 +14,17 @@ class Notepane extends React.Component {
         const { folders, notes } = this.context;
         const notesList = notes.map(note => {
             return ( 
-                <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} /></Link>
+                <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} /></Link>
             )
         })
-        console.log('notes:', notes);
+        
         const foldersList = folders.map(folder => {
        
             return (
-                <NavLink to={`FolderViews/FolderView${folder.name}`} key={folder.id}><Folder key={folder.id} activeClassName = "active" name={folder.name} selectFolder={folder.selectFolder}/></NavLink>
+                <NavLink exact to={`${folder.id}`} key={folder.id}><Folder key={folder.id} id={folder.id} activeClassName = "active" name={folder.name}  /></NavLink>
                 );
           })
-        console.log('folders:', folders);
+       
         return (
             
          <main className='App'>
@@ -31,6 +32,10 @@ class Notepane extends React.Component {
           <div className="maincontent">
                 <div className="sidebar">
                    {foldersList}
+                   
+                <Link to="/add-folder"><button className="addFolderButton">Add Folder</button></Link>
+                   
+                   
                 </div>
                 <div className="notepane">
                     {notesList}

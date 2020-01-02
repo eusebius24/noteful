@@ -76,10 +76,41 @@ a {
     color: #000;
 }
 
-.sidebar.active, .selected {
-    background-color: #95e4f4;
-}
+
 
 .content {
     width: 50%;
+}
+
+/* AddFolder Form */
+
+.addFolderButton {
+    width: 150px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.AddFolder {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.AddFolder__form {
+    text-align: left;
+}
+
+.AddFolder__form input {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 16px - 2px);
+    padding: 5px 8px;
+}
+
+.addFolderButtonSection button {
+    margin-right: 5px;
+}
+
+.active {
+    background-color: #95e4f4;
 }

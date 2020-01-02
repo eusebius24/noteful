@@ -1,11 +1,14 @@
 import React from 'react';
 import NotefulContext from './NotefulContext';
-import {createBrowserHistory} from 'history';
-function Note(props) {
+
+
+class Note extends React.Component {
+  
+
+  deleteNoteRequest(noteID, callback) {
     
-  function deleteNoteRequest(noteID, callback) {
     const notesURL = 'http://localhost:9090/notes';
-    const history = createBrowserHistory();
+    
     fetch(notesURL + `/${noteID}`, {
       method: 'DELETE',
       headers: {
@@ -22,20 +25,23 @@ function Note(props) {
       })
       .then(data =>{
         callback(noteID)
+        this.props.history.push('/');
       })
       .catch(error => {
         console.error(error)
       })
-      history.goBack();
+     
   }
-    return(
+    render() {
+      return(
+       
         <NotefulContext.Consumer>
         {(context) => (
           <div className="note">
-        <h2>{props.name}</h2> 
+        <h2>{this.props.name}</h2> 
           <div className="notefooter">
-          <p>Date modified: {props.modified}</p>
-          <button onClick={() => {deleteNoteRequest(props.id, context.deleteNote)}}>Delete note</button>
+          <p>Date modified: {this.props.modified}</p>
+          <button onClick={() => {this.deleteNoteRequest(this.props.id, context.deleteNote)}}>Delete note</button>
         </div>
          
       </div>
@@ -43,6 +49,8 @@ function Note(props) {
         
       </NotefulContext.Consumer>
     );
+    }
+    
 }
 
 export default Note;

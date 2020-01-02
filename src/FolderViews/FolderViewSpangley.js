@@ -18,7 +18,7 @@ class FolderViewSpangley extends React.Component {
             
             const notesList = notes.map(note => {
                 if (note.folderId === "b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1") {
-                    return <Link to={`/notes/${note.id}`} key={note.id}><Note  id={note.id} key={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} /></Link>
+                    return <Link to={`/notes/${note.id}`} key={note.id}><Note  id={note.id} key={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} /></Link>
                 } else{return ''};
             })
         return (
@@ -29,6 +29,7 @@ class FolderViewSpangley extends React.Component {
           <div className="maincontent">
                 <div className="sidebar">
                     {foldersList}
+                    <Link to={"/addFolder"}><button className="addFolderButton">Add Folder</button></Link>
                 </div>
                 <div className="notepane">
                     {notesList}    

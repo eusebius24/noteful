@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Main from './Main';
@@ -16,6 +17,7 @@ class App extends React.Component {
       selectedFolder: '',
       selectedNote: '',
       error: null,
+      toHomePage: false,
     }
     this.selectFolder = this.selectFolder.bind(this);
     this.selectNote = this.selectNote.bind(this);
@@ -38,9 +40,17 @@ class App extends React.Component {
         note.id !== noteID
     )
     this.setState({
-      notes: newNotes
+      notes: newNotes,
+      
     });
     history.push('/');
+    
+  }
+
+  addFolder = folder => {
+    this.setState({
+      folders: [ ...this.state.folders, folder ],
+    })
   }
 
   componentDidMount() {
@@ -86,6 +96,7 @@ class App extends React.Component {
           this.setState({
             notes: data
           })
+          return <Redirect to="/" />
         })
         .catch(error => this.setState({ error }))
   }
@@ -98,13 +109,16 @@ class App extends React.Component {
       selectFolder: this.selectFolder,
       selectNote: this.selectNote,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
     }
    console.log('state:', this.state);
     return (
       <div>
         <NotefulContext.Provider value={contextValue}>
-          <Header />
-          <Main  />
+         
+            <Header />
+            <Main  />
+         
         </NotefulContext.Provider>
       </div>
       

@@ -1,31 +1,27 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Notepane from './Notepane';
-import FolderViewImportant from './FolderViews/FolderViewImportant';
-import FolderViewSuper from './FolderViews/FolderViewSuper';
-import FolderViewSpangley from './FolderViews/FolderViewSpangley';
+import FolderView from './FolderView';
 import SingleNote from './SingleNote';
+import AddFolder from './AddFolder';
 
 
 
 function Main(props) {
     return (
+      <Router>
         <Switch>
           <Route exact path = '/'
-            component={Notepane}
-            />
-<Route path = "/FolderViews/FolderViewImportant"
-  component={FolderViewImportant} />
-<Route path = '/FolderViews/FolderViewSuper'
-  component={FolderViewSuper} />
-<Route path = '/FolderViews/FolderViewSpangley'
-  component={FolderViewSpangley} />
-<Route path="/notes/:noteid" component={SingleNote}/>} />
-
-
-</Switch>
-
+            component={Notepane} />
+          <Route exact path = "/:folderid"
+            component={FolderView} />
+          <Route path="/notes/:noteid" 
+            component={SingleNote}/>} />
+          <Route path="/add-folder" 
+            component={AddFolder} />
+        </Switch>
+        </Router>
     );
 }
 

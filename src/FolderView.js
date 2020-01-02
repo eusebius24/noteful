@@ -2,31 +2,54 @@ import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import Folder from './Folder';
 import Note from './Note';
-function FolderView(props) {
-  
-    const folders = props.folders.map(folder => {
-        return (
-            <Folder key={folder.id} name={folder.name} selectFolder={props.selectFolder} /> //Link each folder to its own `FolderView${folder.name}`
-            );
-      })
-    return (
-     <main className='App'>
-      
+import NotefulContext from './NotefulContext';
+import './App.css';
 
-      <div className="maincontent">
-            <div className="sidebar">
-                {folders}
-            </div>
-            <div className="notepane">
-                <Note />
-                <Note />
-                
-            </div>
-        </div>
+class FolderView extends React.Component {
+    static contextType = NotefulContext;
     
-     </main>
+    render() {
+        console.log('Location:', this.props.location);
+        const folderURL = this.props.location.pathname;
+        const folderID = folderURL.substring(1);
+        console.log(folderURL, folderID);
+        const { folders, notes } = this.context;
         
-    );
+        const foldersList = folders.map(folder => {
+        
+           
+            
+            return <NavLink exact to={`${folder.id}`}  activeClassName = "active" key={folder.id}><Folder key={folder.id} id={folder.id} name={folder.name}  /></NavLink> 
+                
+    
+          })
+        
+        const notesList = notes.map(note => {
+            if (note.folderId === folderID) {
+                return <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id}  id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} /></Link>
+            } else{return ''};
+        })
+        
+    
+        return (
+         <main className='App'>
+          
+    
+          <div className="maincontent">
+                <div className="sidebar">
+                    {foldersList}
+                    <Link to="/add-folder"><button className="addFolderButton">Add Folder</button></Link>
+                </div>
+                <div className="notepane">
+                    {notesList}    
+                </div>
+            </div>
+        
+         </main>
+            
+        );
+        
+    }
     
 }
 

@@ -17,7 +17,7 @@ class FolderViewSuper extends React.Component {
         
         const notesList = notes.map(note => {
             if (note.folderId === "b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1") {
-                return <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id}  id={note.id} name={note.name} content={note.content} modified={note.modified} folderId={note.folderId} /></Link>
+                return <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id}  id={note.id} name={note.name} content={note.content} modified={note.modified} folderId={note.folderId} history={this.props.history}/></Link>
             } else{return ''};
         })
         
@@ -29,6 +29,7 @@ class FolderViewSuper extends React.Component {
           <div className="maincontent">
                 <div className="sidebar">
                     {foldersList}
+                    <Link to={"/addFolder"}><button className="addFolderButton">Add Folder</button></Link>
                 </div>
                 <div className="notepane">
                     {notesList}    
