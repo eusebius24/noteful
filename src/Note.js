@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NotefulContext from './NotefulContext';
+import PropTypes from 'prop-types';
 
 
 class Note extends React.Component {
-  
 
   deleteNoteRequest(noteID, callback) {
     
@@ -25,7 +26,6 @@ class Note extends React.Component {
       })
       .then(data =>{
         callback(noteID)
-        this.props.history.push('/');
       })
       .catch(error => {
         console.error(error)
@@ -33,24 +33,31 @@ class Note extends React.Component {
      
   }
     render() {
-      return(
-       
+      const dirtyDate = new Date(this.props.modified);
+      const date = dirtyDate.toLocaleString();
+      return (
         <NotefulContext.Consumer>
         {(context) => (
           <div className="note">
-        <h2>{this.props.name}</h2> 
-          <div className="notefooter">
-          <p>Date modified: {this.props.modified}</p>
-          <button onClick={() => {this.deleteNoteRequest(this.props.id, context.deleteNote)}}>Delete note</button>
-        </div>
-         
-      </div>
+            <Link to={`/notes/${this.props.id}`} key={this.props.id}>
+              <h2>{this.props.name}</h2> 
+            </Link>
+            <div className="notefooter">
+              <p>Date modified: {date}</p>
+              <button onClick={() => {this.deleteNoteRequest(this.props.id, context.deleteNote)}}>Delete note</button>
+             </div>
+            </div>
         )}
-        
-      </NotefulContext.Consumer>
-    );
+        </NotefulContext.Consumer>
+      );
     }
     
 }
 
 export default Note;
+
+Note.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  modified: PropTypes.string
+}

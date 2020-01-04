@@ -4,9 +4,8 @@ import {Link} from 'react-router-dom';
 function Header() {
     return(
         <header className="mainheader">
-        <Link exact to="/"><h1>Noteful</h1>
-         </Link>
-          
+            <Link to="/"><h1>Noteful</h1>
+            </Link>
         </header>
     );
   

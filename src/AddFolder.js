@@ -52,7 +52,6 @@ class AddFolder extends React.Component{
         const {error} = this.state
         return (
             <>
-           
             <section className="AddFolder">
                 <h2>Add a folder</h2>
                 <form className="AddFolder__form" onSubmit={this.handleSubmit}>
@@ -69,7 +68,6 @@ class AddFolder extends React.Component{
                         <button type='button' onClick={this.handleClickCancel}>Cancel</button> 
                         <button type='submit'>Save</button>
                         </div>
-                       
                     </div>
                 </form>
             </section>

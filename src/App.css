@@ -84,18 +84,18 @@ a {
 
 /* AddFolder Form */
 
-.addFolderButton {
+.addFolderButton, .addNoteButton {
     width: 150px;
     margin-top: 10px;
     padding: 20px;
 }
 
-.AddFolder {
+.AddFolder, .AddNote {
     width: 50%;
     margin: 0 auto;
 }
 
-.AddFolder__form {
+.AddFolder__form, .AddNote__form {
     text-align: left;
 }
 
@@ -107,7 +107,20 @@ a {
     padding: 5px 8px;
 }
 
-.addFolderButtonSection button {
+.AddNote__form input, textarea {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: calc(100% - 16px - 2px);
+    padding: 5px 8px;
+}
+
+.AddNote__form textarea {
+    height: 150px;
+}
+
+
+.addFolderButtonSection button, .addNoteButtonSection button {
     margin-right: 5px;
 }
 

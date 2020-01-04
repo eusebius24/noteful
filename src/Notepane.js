@@ -14,39 +14,36 @@ class Notepane extends React.Component {
         const { folders, notes } = this.context;
         const notesList = notes.map(note => {
             return ( 
-                <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} /></Link>
+               <Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} />
             )
         })
         
         const foldersList = folders.map(folder => {
-       
             return (
-                <NavLink exact to={`${folder.id}`} key={folder.id}><Folder key={folder.id} id={folder.id} activeClassName = "active" name={folder.name}  /></NavLink>
+                <NavLink exact to={`${folder.id}`} key={folder.id} 
+                activeClassName = "active"><Folder key={folder.id} id={folder.id}  name={folder.name}  /></NavLink>
                 );
-          })
+        })
        
         return (
-            
          <main className='App'>
-         
           <div className="maincontent">
                 <div className="sidebar">
-                   {foldersList}
-                   
-                <Link to="/add-folder"><button className="addFolderButton">Add Folder</button></Link>
-                   
-                   
+                    {foldersList}
+                    <Link to="/add-folder">
+                     <button className="addFolderButton">Add Folder</button>
+                    </Link>
                 </div>
                 <div className="notepane">
                     {notesList}
+                    <Link to="/add-note">
+                        <button className="addNoteButton">Add Note</button>
+                    </Link>
                 </div>
             </div>
-        
          </main>
-            
         );
     }
-    
     
 }
 

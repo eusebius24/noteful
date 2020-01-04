@@ -36,20 +36,27 @@ class App extends React.Component {
 
   deleteNote = noteID => {
     const history = createBrowserHistory();
+   
     const newNotes = this.state.notes.filter(note => 
         note.id !== noteID
     )
+  
     this.setState({
       notes: newNotes,
-      
     });
+   
     history.push('/');
-    
   }
 
   addFolder = folder => {
     this.setState({
       folders: [ ...this.state.folders, folder ],
+    })
+  }
+
+  addNote = note => {
+    this.setState({
+      notes: [ ...this.state.notes, note ],
     })
   }
 
@@ -70,11 +77,9 @@ class App extends React.Component {
         
       })
       .then(data => {
-        console.log('folder data:', data);
         this.setState({
           folders: data
         })
-        console.log('folders:', this.state.folders);
       })
       .catch(error => this.setState({ error }))
     
@@ -92,7 +97,6 @@ class App extends React.Component {
           
         })
         .then(data => {
-          console.log('note data:', data);
           this.setState({
             notes: data
           })
@@ -110,8 +114,9 @@ class App extends React.Component {
       selectNote: this.selectNote,
       deleteNote: this.deleteNote,
       addFolder: this.addFolder,
+      addNote: this.addNote,
     }
-   console.log('state:', this.state);
+  
     return (
       <div>
         <NotefulContext.Provider value={contextValue}>
