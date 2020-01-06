@@ -23,12 +23,12 @@ class FolderView extends React.Component {
             }
     
           })
-        
-        const notesList = notes.map(note => {
-            if (note.folderId === folderID) {
+          const newNotes = notes.filter(note => note.folderId === folderID);
+        const notesList = newNotes.map(note => {
+           
                 return <Link to={`/notes/${note.id}`} key={note.id}><Note key={note.id}  id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} /></Link>
-            } else{return ''};
-        })
+            
+        });
         
     
         return (

@@ -15,7 +15,7 @@ class SingleNote extends React.Component {
         const note = this.context.notes.filter(note => {
             return note.id === params.noteid
         })
-       
+        console.log(note);
         return (
             <div className="maincontent">
                 <div className="sidebar">
