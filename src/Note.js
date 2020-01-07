@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NotefulContext from './NotefulContext';
 import PropTypes from 'prop-types';
-
+import { createBrowserHistory } from "history";
 
 class Note extends React.Component {
 
@@ -32,14 +32,19 @@ class Note extends React.Component {
       })
      
   }
+ 
     render() {
       const dirtyDate = new Date(this.props.modified);
       const date = dirtyDate.toLocaleString();
+      const history = createBrowserHistory();
+      if (!this.props.id) { history.push('/') } else {
       return (
         <NotefulContext.Consumer>
+
         {(context) => (
           <div className="note">
-            <Link to={`/notes/${this.props.id}`} key={this.props.id}>
+            
+            <Link to={`/notes/${this.props.id}`} key={this.props.id} name={this.props.name} modified={this.props.modified} content={this.props.content}>
               <h2>{this.props.name}</h2> 
             </Link>
             <div className="notefooter">
@@ -50,7 +55,7 @@ class Note extends React.Component {
         )}
         </NotefulContext.Consumer>
       );
-    }
+    }}
     
 }
 

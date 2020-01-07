@@ -36,16 +36,16 @@ class App extends React.Component {
 
   deleteNote = noteID => {
     const history = createBrowserHistory();
-   
-    const newNotes = this.state.notes.filter(note => 
-        note.id !== noteID
-    )
+    history.push('/');
+    const newNotes = this.state.notes.filter(note => {
+       return note.id !== noteID
+    })
   
     this.setState({
       notes: newNotes,
     });
    
-    history.push('/');
+    
   }
 
   addFolder = folder => {

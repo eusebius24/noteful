@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './Note';
 import {createBrowserHistory} from 'history';
 import NotefulContext from './NotefulContext';
+import { Redirect } from 'react-router-dom';
 
 class SingleNote extends React.Component {
 
@@ -16,6 +17,9 @@ class SingleNote extends React.Component {
             return note.id === params.noteid
         })
         console.log(note);
+        if (!note[0]) { 
+        return <Redirect exact to = '/' />
+    } else {
         return (
             <div className="maincontent">
                 <div className="sidebar">
@@ -27,7 +31,7 @@ class SingleNote extends React.Component {
                 </div>
             </div>
         );
-    }
+    }}
     
 }
 

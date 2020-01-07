@@ -12,7 +12,7 @@ class Notepane extends React.Component {
    
     render() {
         const { folders, notes } = this.context;
-       
+        console.log(this.context.notes);
         const notesList = notes.map(note => {
             return ( 
                <Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} />
