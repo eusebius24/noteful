@@ -30,7 +30,7 @@ class FolderView extends React.Component {
             
         });
         
-        debugger;
+       
         return (
          <main className='App'>
           <div className="maincontent">
