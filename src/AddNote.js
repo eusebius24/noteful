@@ -17,12 +17,12 @@ class AddNote extends React.Component{
         e.preventDefault();
         const date = new Date();
         const { noteName, folderName, noteContent } = e.target;
-        const url = 'http://localhost:9090/notes';
+        const url = 'http://localhost:8000/api/notes';
         const newNote = {
             id: '',
-            name: noteName.value,
-            modified: date.toLocaleString(),
-            folderId: folderName.value,
+            note_name: noteName.value,
+            date_modified: date.toLocaleString(),
+            folder_id: folderName.value,
             content: noteContent.value
         }
         fetch(url, {
@@ -59,7 +59,7 @@ class AddNote extends React.Component{
     render() {
         const {error} = this.state
         const folderSelect = this.context.folders.map (folder => {
-            return (<option key = {folder.id} value={`${folder.id}`}>{folder.name}</option>);
+            return (<option key = {folder.id} value={`${folder.id}`}>{folder.folder_name}</option>);
         })
         return (
             <>

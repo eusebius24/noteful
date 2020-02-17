@@ -61,8 +61,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const folderURL = 'http://localhost:9090/folders';
-    const notesURL = 'http://localhost:9090/notes';
+    const folderURL = 'http://localhost:8000/api/folders/';
+    const notesURL = 'http://localhost:8000/api/notes/';
     fetch(folderURL, {
       method: 'GET',
       headers: {

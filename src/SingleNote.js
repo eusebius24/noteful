@@ -13,12 +13,14 @@ class SingleNote extends React.Component {
         const history = createBrowserHistory();
         
         const { params } = this.props.match;
-        const note = this.context.notes.filter(note => {
-            return note.id === params.noteid
+        console.log('params:', this.props.match.params)
+        console.log("this.context.notes:", this.context.notes);
+        const note = this.context.notes.filter(n => {
+            return n.id === parseInt(params.noteid)
         })
-        console.log(note);
+        console.log("note:", note);
         if (!note[0]) { 
-        return <Redirect exact to = '/' />
+        return <div>Loading...</div>
     } else {
         return (
             <div className="maincontent">
@@ -26,7 +28,7 @@ class SingleNote extends React.Component {
                     <button onClick={() => history.goBack()}>Go back</button>
                 </div>
                 <div className="notepane">
-                    <Note id={params.noteid} name={note[0].name} modified={note[0].modified} />
+                    <Note id={params.noteid} name={note[0].note_name} modified={note[0].date_modified} />
                     <p className="content">{note[0].content}</p>
                 </div>
             </div>

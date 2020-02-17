@@ -12,17 +12,20 @@ class Notepane extends React.Component {
    
     render() {
         const { folders, notes } = this.context;
-        console.log(this.context.notes);
-        const notesList = notes.map(note => {
+        console.log("NOTES:", this.context.notes);
+        console.log("FOLDERS:", this.context.folders)
+        // console.log(this.context.folders[0].folder_name);
+        const notesList = this.context.notes.map(note => {
             return ( 
-               <Note key={note.id} id={note.id} name={note.name} content={note.content} folderId={note.folderId} modified={note.modified} history={this.props.history} />
+               <Note key={note.id} id={note.id} name={note.note_name} content={note.content} folderId={note.folder_id} modified={note.date_modified} history={this.props.history} />
             )
         })
+        console.log("NotesList:", notesList);
         
-        const foldersList = folders.map(folder => {
+        const foldersList = this.context.folders.map(folder => {
             return (
-                <NavLink exact to={`${folder.id}`} key={folder.id} 
-                activeClassName = "active"><Folder key={folder.id} id={folder.id}  name={folder.name}  /></NavLink>
+                <NavLink exact to={`/folders/${folder.id}`} key={folder.id} 
+                activeClassName = "active"><Folder key={folder.id} id={folder.id}  name={folder.folder_name}  /></NavLink>
                 );
         })
        
@@ -30,13 +33,13 @@ class Notepane extends React.Component {
          <main className='App'>
           <div className="maincontent">
                 <div className="sidebar">
-                    {foldersList}
+                    {(!folders) ? "loading ..." : foldersList}
                     <Link to="/add-folder">
                      <button className="addFolderButton">Add Folder</button>
                     </Link>
                 </div>
                 <div className="notepane">
-                    {notesList}
+                    {(!notes) ? "loading..." : notesList}
                     <Link to="/add-note">
                         <button className="addNoteButton">Add Note</button>
                     </Link>

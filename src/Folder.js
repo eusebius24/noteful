@@ -6,7 +6,7 @@ function Folder(props) {
    if (props.selected === true) {
     return (
         <div className="folder" id={props.id} onClick={props.selectFolder} style={{background: "#95e4f4"}}>
-            <h2>{props.name}</h2>
+            <h2>{props.folder_name}</h2>
         </div>
         );
    } else {
@@ -22,5 +22,5 @@ function Folder(props) {
 export default Folder;
 
 Folder.propTypes = {
-    name: PropTypes.string.isRequired
+    folder_name: PropTypes.string.isRequired
 };

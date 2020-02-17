@@ -8,7 +8,7 @@ class Note extends React.Component {
 
   deleteNoteRequest(noteID, callback) {
     
-    const notesURL = 'http://localhost:9090/notes';
+    const notesURL = 'http://localhost:8000/api/notes';
     
     fetch(notesURL + `/${noteID}`, {
       method: 'DELETE',
@@ -22,7 +22,7 @@ class Note extends React.Component {
             throw error
           })
         }
-        return res.json()
+        
       })
       .then(data =>{
         callback(noteID)
@@ -44,7 +44,7 @@ class Note extends React.Component {
         {(context) => (
           <div className="note">
             
-            <Link to={`/notes/${this.props.id}`} key={this.props.id} name={this.props.name} modified={this.props.modified} content={this.props.content}>
+            <Link to={`/notes/${this.props.id}`} key={this.props.id} name={this.props.note_name} modified={this.props.date_modified} content={this.props.content}>
               <h2>{this.props.name}</h2> 
             </Link>
             <div className="notefooter">
@@ -63,6 +63,6 @@ export default Note;
 
 Note.propTypes = {
   name: PropTypes.string.isRequired,
-  id: PropTypes.string,
+  id: PropTypes.number,
   modified: PropTypes.string
 }

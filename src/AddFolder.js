@@ -15,9 +15,9 @@ class AddFolder extends React.Component{
     handleSubmit = e => {
         e.preventDefault();
         const { folderName } = e.target;
-        const url = 'http://localhost:9090/folders';
+        const url = 'http://localhost:8000/api/folders';
         const newFolder = {
-            name: folderName.value,
+            folder_name: folderName.value,
         }
         fetch(url, {
             method: 'POST',

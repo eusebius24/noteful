@@ -23,7 +23,7 @@ function Main(props) {
                 component={SingleNote}/>} />
               <Route exact path="/add-folder" 
                 component={AddFolder} />
-              <Route exact path = "/:folderid"
+              <Route exact path = "/folders/:folderid"
                 component={FolderView} />
              </Switch>
         </ErrorBoundary>
