@@ -8,7 +8,7 @@ class Note extends React.Component {
 
   deleteNoteRequest(noteID, callback) {
     
-    const notesURL = 'http://https://fathomless-scrubland-44969.herokuapp.com/api/notes';
+    const notesURL = 'https://fathomless-scrubland-44969.herokuapp.com/api/notes';
     
     fetch(notesURL + `/${noteID}`, {
       method: 'DELETE',
