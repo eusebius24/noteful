@@ -17,7 +17,7 @@ class AddNote extends React.Component{
         e.preventDefault();
         const date = new Date();
         const { noteName, folderName, noteContent } = e.target;
-        const url = 'http://localhost:8000/api/notes';
+        const url = 'https://fathomless-scrubland-44969.herokuapp.com/api/notes';
         const newNote = {
             id: '',
             note_name: noteName.value,
