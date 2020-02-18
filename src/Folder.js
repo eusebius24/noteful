@@ -17,7 +17,7 @@ class Folder extends React.Component {
         if(this.props.status) {
     return (
         <div className="folder" id={this.props.id} onClick={this.props.selectFolder} style={{background: "#95e4f4"}}>
-            <h2>{this.props.folder_name}</h2>
+            <h2>{this.props.name}</h2>
         </div>
         );
    } else {

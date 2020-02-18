@@ -16,9 +16,10 @@ class FolderView extends React.Component {
         console.log("folderID:", folderID);
         const { folders, notes } = this.context;
         console.log("notes:", notes);
+
         const foldersList = folders.map(folder => {
-        
-           if (folderID === folder.id) {
+            
+           if (parseInt(folderID) === folder.id) {
             return <NavLink exact to={`/folders/${folder.id}`}  className = "selected" key={folder.id}><Folder key={folder.id} id={folder.id} name={folder.folder_name} status = "selected" selected={true} /></NavLink> 
            }
             else {

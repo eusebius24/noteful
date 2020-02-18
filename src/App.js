@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {BrowserRouter, Redirect} from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Main from './Main';
@@ -61,8 +61,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const folderURL = 'http://localhost:8000/api/folders/';
-    const notesURL = 'http://localhost:8000/api/notes/';
+    const folderURL = 'https://fathomless-scrubland-44969.herokuapp.com/api/folders';
+    const notesURL = 'https://fathomless-scrubland-44969.herokuapp.com/api/notes/';
     fetch(folderURL, {
       method: 'GET',
       headers: {
@@ -119,12 +119,15 @@ class App extends React.Component {
   
     return (
       <div>
-        <NotefulContext.Provider value={contextValue}>
-         
-            <Header />
-            <Main  />
-         
-        </NotefulContext.Provider>
+        <BrowserRouter>
+          <NotefulContext.Provider value={contextValue}>
+          
+          <Header />
+          <Main  />
+        
+          W</NotefulContext.Provider>
+        </BrowserRouter>
+        
       </div>
       
     );

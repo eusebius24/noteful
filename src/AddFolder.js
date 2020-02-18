@@ -15,7 +15,7 @@ class AddFolder extends React.Component{
     handleSubmit = e => {
         e.preventDefault();
         const { folderName } = e.target;
-        const url = 'http://localhost:8000/api/folders';
+        const url = 'https://fathomless-scrubland-44969.herokuapp.com/api/folders';
         const newFolder = {
             folder_name: folderName.value,
         }
